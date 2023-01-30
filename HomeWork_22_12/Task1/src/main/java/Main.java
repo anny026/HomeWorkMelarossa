@@ -9,67 +9,71 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        String text3 = "8 привет 1+0-5*2   ";
+        String text3 = "8 привет 8+0-5*2   ";
         findAndChange(text3);
-        System.out.println("Замена макс цифры:  "+findAndChange(text3));
+        System.out.println("Замена макс цифры:  " + findAndChange(text3));
     }
+
     public static String findAndChange(String text) {
-        char symbol ='0';
-        int maxNumber=0;
-        int isMaxNumber=0;
-        String number="";
+        char symbol = '0';
+        int maxNumber = 0;
+        String number = "";
         for (int i = 0; i < text.length(); i++) {
-            symbol =text.charAt(i);
+            int potentialMaxNumber = 0;
+            symbol = text.charAt(i);
             if (Character.isDigit(symbol)) {
-                number+=symbol;
-                isMaxNumber=Integer.parseInt(number);
-                if (isMaxNumber>maxNumber) maxNumber=isMaxNumber;
-                number="";
+                number += symbol;
+                potentialMaxNumber = Integer.parseInt(number);
+                if (potentialMaxNumber > maxNumber) {
+                    maxNumber = potentialMaxNumber;
+                }
+                number = "";
             }
         }
-        number=String.valueOf(maxNumber);
+        number = String.valueOf(maxNumber);
         text = text.replace(number, getWord(maxNumber));
         return text;
     }
-    public static String getWord (int number){
-        String numberWord="";
-        switch (number){
+
+    public static String getWord(int number) {
+        String numberWord = "";
+        switch (number) {
             case (9):
-                numberWord="девять";
+                numberWord = "девять";
                 break;
             case (8):
-                numberWord="восемь";
+                numberWord = "восемь";
                 break;
             case (7):
-                numberWord="семь";
+                numberWord = "семь";
                 break;
             case (6):
-                numberWord="шесть";
+                numberWord = "шесть";
                 break;
             case (5):
-                numberWord="пять";
+                numberWord = "пять";
                 break;
             case (4):
-                numberWord="четыре";
+                numberWord = "четыре";
                 break;
             case (3):
-                numberWord="три";
+                numberWord = "три";
                 break;
             case (2):
-                numberWord="два";
+                numberWord = "два";
                 break;
             case (1):
-                numberWord="один";
+                numberWord = "один";
                 break;
             case (0):
-                numberWord="ноль";
+                numberWord = "ноль";
                 break;
         }
         return numberWord;
     }
 
 }
-    //2 вариант для себя оставила
+//2 вариант для себя оставила
 //    String text2 = "text8 4text 7 text text9 6 text 2";
 //
 //        if (text2.chars().mapToObj(i -> (char) i).collect(Collectors.toList()).stream().anyMatch(x -> x.toString().equals("9")))
